@@ -12,33 +12,23 @@
 
 NAME = libftprintf.a
 
-PATH_HELPERS = ./helpers/
-
-HELPERS = $(PATH_HELPERS)ft_print_char.c\
-		  $(PATH_HELPERS)ft_print_hex.c\
-		  $(PATH_HELPERS)ft_print_int.c\
-		  $(PATH_HELPERS)ft_print_ptr.c\
-		  $(PATH_HELPERS)ft_print_str.c\
-		  $(PATH_HELPERS)ft_print_unsigned.c\
-
-FUNCTIONS = $(HELPERS) ft_printf.c
-
-OBJECT_FILES = ${FUNCTIONS:.c=.o}
-
-$(NAME) = all
-
-CC = gcc
-
-CFLAGS = -Wall -Wextra -Werror
+FUNCTIONS = ft_print_char.c\
+			ft_print_hex.c\
+			ft_print_int.c\
+			ft_print_ptr.c\
+			ft_print_str.c\
+			ft_print_unsigned.c\
+			ft_printf.c
+OBJECTS = ${FUNCTIONS:.c=.o}
 
 all : $(NAME)
 
 $(NAME) :
 	$(CC) $(CFLAGS) -c $(FUNCTIONS)
-	ar rcs $(NAME) ${OBJECT_FILES}
+	ar rcs $(NAME) $(OBJECTS)
 
 clean : 
-	rm -rf ${OBJECT_FILES}
+	rm -rf $(OBJECTS)
 
 fclean : clean
 	rm -rf $(NAME)
@@ -46,6 +36,7 @@ fclean : clean
 re : fclean all
 
 .PHONY : all clean fclean re
+	
 
 
 		

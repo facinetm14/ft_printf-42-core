@@ -12,12 +12,11 @@
 
 #include "helpers.h"
 
-static int  ft_size_ptr(unsigned long int n)
+static int	ft_size_ptr(unsigned long int n)
 {
-	int size;
+	int	size;
 
 	size = 1;
-
 	while (n >= 16)
 	{
 		n /= 16;
@@ -26,17 +25,17 @@ static int  ft_size_ptr(unsigned long int n)
 	return (size);
 }
 
-static void ft_putnbr_fd(unsigned long int n, int fd)
+static void	ft_putnbr_fd(unsigned long int n, int fd)
 {
 	char	unit;
+
 	if (n < 16)
 	{
-		if(n < 10)
-            unit = n + '0';
-        else
-           unit = n - 10 + 'a'; 
-            
-	    write(fd, &unit, 1);
+		if (n < 10)
+			unit = n + '0';
+		else
+			unit = n - 10 + 'a';
+		write(fd, &unit, fd);
 	}
 	else
 	{
@@ -45,17 +44,18 @@ static void ft_putnbr_fd(unsigned long int n, int fd)
 	}
 }
 
-void    ft_print_ptr(unsigned long long nb, int *str_len)
+void	ft_print_ptr(unsigned long long nb, int *str_len)
 {
-    unsigned long long d;
+	unsigned long long	d;
 
-    d = nb;
-    write (1, "0x", 2);
-    if (nb == 0)
-    {
-        write (1, "0", 1);
-        return ;
-    }
-    ft_putnbr_fd(d, 1);
-    *str_len += ft_size_ptr(d);
+	d = nb;
+	write (1, "0x", 2);
+	if (nb == 0)
+	{
+		write (1, "0", 1);
+		*str_len += 3;
+		return ;
+	}
+	ft_putnbr_fd(d, 1);
+	*str_len += ft_size_ptr(d) + 2;
 }

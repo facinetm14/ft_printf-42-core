@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helpers.h                                          :+:      :+:    :+:   */
+/*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fakouyat <fakouyat@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 02:03:52 by fakouyat          #+#    #+#             */
-/*   Updated: 2022/06/09 02:03:52 by fakouyat         ###   ########.fr       */
+/*   Created: 2022/06/09 03:49:45 by fakouyat          #+#    #+#             */
+/*   Updated: 2022/06/09 03:49:45 by fakouyat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef HELPERS_H
-# define HELPERS_H
-# include <unistd.h>
 
-void    ft_print_int(int nb, int *str_len);
-void    ft_print_char(int c, int *str_len);
-void    ft_print_str(char *str, int *str_len);
-void    ft_print_unsigned(unsigned int, int *str_len);
-void    ft_print_ptr(unsigned long long nb, int *str_len);
-void    ft_print_hex(unsigned int nb, int *str_len, char c);
-#endif
+#include "helpers.h"
+
+void	ft_print_str(char *str, int *str_len)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		*str_len += 6;
+		return ;
+	}
+	while (str[i])
+		i++;
+	write(1, str, i);
+	*str_len += i;
+}

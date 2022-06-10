@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   helpers.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fakouyat <fakouyat@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 03:16:39 by fakouyat          #+#    #+#             */
-/*   Updated: 2022/06/09 03:16:39 by fakouyat         ###   ########.fr       */
+/*   Created: 2022/06/09 02:03:52 by fakouyat          #+#    #+#             */
+/*   Updated: 2022/06/09 02:03:52 by fakouyat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#ifndef HELPERS_H
+# define HELPERS_H
+# include <unistd.h>
 
-#include "helpers.h"
-
-void    ft_print_char(int c, int *str_len)
-{
-    write(1, &c, 1);
-    *str_len += 1;
-}
+void	ft_print_int(int nb, int *str_len);
+void	ft_print_char(int c, int *str_len);
+void	ft_print_str(char *str, int *str_len);
+void	ft_print_unsigned(unsigned int nb, int *str_len);
+void	ft_print_ptr(unsigned long long nb, int *str_len);
+void	ft_print_hex(unsigned int nb, int *str_len, char c);
+#endif

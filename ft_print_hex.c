@@ -1,66 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_int.c                                     :+:      :+:    :+:   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fakouyat <fakouyat@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 02:01:40 by fakouyat          #+#    #+#             */
-/*   Updated: 2022/06/09 02:01:40 by fakouyat         ###   ########.fr       */
+/*   Created: 2022/06/10 14:21:19 by fakouyat          #+#    #+#             */
+/*   Updated: 2022/06/10 14:21:19 by fakouyat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "helpers.h"
 
-static int  ft_size_int(int n)
+static int	ft_size_hex(unsigned int n)
 {
 	int	size;
-	int	n_original;
 
-	n_original = n;
 	size = 1;
-	if (n < 0)
-		n = n * -1;
-	while (n >= 10)
+	while (n >= 16)
 	{
-		n /= 10;
+		n /= 16;
 		size++;
 	}
-	if (n_original < 0)
-		size += 1;
 	return (size);
 }
 
-static void ft_putnbr_fd(int n, int fd)
+static void	ft_putnbr_fd(unsigned int n, char c, int fd)
 {
 	char	unit;
 
-	if (n == -2147483648)
+	if (n < 16)
 	{
-		write(fd, "-2147483648", 11);
-		return ;
-	}
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		n *= -1;
-	}
-	if (n < 10)
-	{
-		unit = n + '0';
+		if (n < 10)
+			unit = n + '0';
+		else
+		{
+			if (c == 'x')
+				unit = n - 10 + 'a';
+			else if (c == 'X')
+				unit = n - 10 + 'A';
+		}
 		write(fd, &unit, 1);
 	}
 	else
 	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
+		ft_putnbr_fd(n / 16, c, fd);
+		ft_putnbr_fd(n % 16, c, fd);
 	}
 }
 
-void    ft_print_int(int nb, int *str_len)
+void	ft_print_hex(unsigned int nb, int *str_len, char c)
 {
-    int d;
+	unsigned int	d;
 
-    d = nb;
-    ft_putnbr_fd(d, 1);
-    *str_len += ft_size_int(d);
+	d = nb;
+	if (d == 0)
+	{
+		write (1, "0", 1);
+		*str_len += 1;
+		return ;
+	}
+	ft_putnbr_fd(d, c, 1);
+	*str_len += ft_size_hex(d);
 }

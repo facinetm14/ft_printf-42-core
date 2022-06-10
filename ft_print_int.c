@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
+/*   ft_print_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fakouyat <fakouyat@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 14:13:04 by fakouyat          #+#    #+#             */
-/*   Updated: 2022/06/09 14:13:04 by fakouyat         ###   ########.fr       */
+/*   Created: 2022/06/09 02:01:40 by fakouyat          #+#    #+#             */
+/*   Updated: 2022/06/09 02:01:40 by fakouyat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "helpers.h"
 
-static int  ft_size_unsigned(unsigned int n)
+static int	ft_size_int(int n)
 {
-	int             size;
-	unsigned int    n_original;
+	int	size;
+	int	n_original;
 
 	n_original = n;
 	size = 1;
@@ -31,7 +30,7 @@ static int  ft_size_unsigned(unsigned int n)
 	return (size);
 }
 
-static void ft_putnbr_fd(unsigned int n, int fd)
+static void	ft_putnbr_fd(int n, int fd)
 {
 	char	unit;
 
@@ -57,11 +56,14 @@ static void ft_putnbr_fd(unsigned int n, int fd)
 	}
 }
 
-void    ft_print_unsigned(unsigned int nb, int *str_len)
+void	ft_print_int(int nb, int *str_len)
 {
-    unsigned int    d;
+	int	d;
 
-    d = nb;
-    ft_putnbr_fd(d, 1);
-    *str_len += ft_size_unsigned(d);
+	d = nb;
+	ft_putnbr_fd(d, 1);
+	if (d != -2147483648)
+		*str_len += ft_size_int(d);
+	else
+		*str_len += 11;
 }

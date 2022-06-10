@@ -14,7 +14,7 @@
 
 void	ft_format_arg(va_list args, char c, int *str_len)
 {
-	if (c == 'd' || 'i')
+	if (c == 'd' || c == 'i')
 		ft_print_int(va_arg(args, int), str_len);
 	else if (c == 'c')
 		ft_print_char(va_arg(args, int), str_len);
