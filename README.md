@@ -11,7 +11,7 @@ you'll get libftprintf.a which is the only file you need to compile with your pr
 
 #ex : ft_printf ("hello, I'm from %d", 42);
 
-gcc your_main.c libftprint.a
+gcc your_main.c libftprintf.a
 
 
 
