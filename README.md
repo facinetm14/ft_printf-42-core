@@ -13,7 +13,4 @@ you'll get libftprintf.a which is the only file you need to compile with your pr
 
 gcc your_main.c libftprintf.a
 
-
-
-    
-
+Start with [format dispatch](ft_printf.c) and trace a hexadecimal conversion into [the hex writer](ft_print_hex.c). The [public header](ft_printf.h) exposes the callable interface. Build the library with `make`.
